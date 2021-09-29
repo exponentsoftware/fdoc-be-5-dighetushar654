@@ -34,7 +34,7 @@ exports.get_todo = async (req, res) => {
             const todos = await Todo.find().limit(limit).skip((page-1)*limit);
             res.status(201).json(todos);
         } else {
-            const userTodos = await Todo.find({user: decodetoken.user.id}).limit(limit * 1).skip((page-1)*limit)    ;
+            const userTodos = await Todo.find({user: decodetoken.user.id}).limit(limit).skip((page-1)*limit)    ;
             res.status(201).json(userTodos);
         }
     } catch (err) {
