@@ -31,7 +31,7 @@ exports.get_todo = async (req, res) => {
         const decodetoken = jwt.verify(token, process.env.SecretKey);
         if(decodetoken.user.userRole == "Admin"){
             
-            const todos = await Todo.find().limit(limit * 1).skip((page-1)*limit);
+            const todos = await Todo.find().limit(limit).skip((page-1)*limit);
             res.status(201).json(todos);
         } else {
             const userTodos = await Todo.find({user: decodetoken.user.id}).limit(limit * 1).skip((page-1)*limit)    ;
